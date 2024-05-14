@@ -37,7 +37,7 @@ int s = shm_open("/s", O_CREAT | O_RDWR, S_IRUSR | S_IWUSR);
     int ret = sem_post((sem_t*)m);
     if (0 != ret)
     {
-      printf("Failed to write to: %s: %s\n", argv[1], strerror(errno));
+      printf("Failed to write to: %\n", strerror(errno));
       return EXIT_FAILURE;
     }
     printf("secs: %ld, nsecs: %ld\n", ts.tv_sec, ts.tv_nsec);
