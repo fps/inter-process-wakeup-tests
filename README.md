@@ -102,3 +102,30 @@ secs: 250134, nsecs: 113445567
 
 Again around 50 us delay between the signal and the wakeup
 
+
+## Named semaphore
+
+```
+chrt -f 95 ./o_named_sem
+secs: 282642, nsecs: 777912350
+secs: 282643, nsecs: 778104845
+secs: 282644, nsecs: 778145842
+secs: 282645, nsecs: 778326973
+secs: 282646, nsecs: 778446322
+secs: 282647, nsecs: 778503648
+secs: 282648, nsecs: 778686387
+^C
+```
+
+```
+chrt -f 95 ./i_named_sem
+secs: 282642, nsecs: 777957726
+secs: 282643, nsecs: 778152272
+secs: 282644, nsecs: 778182705
+secs: 282645, nsecs: 778383635
+secs: 282646, nsecs: 778508413
+secs: 282647, nsecs: 778519117
+secs: 282648, nsecs: 778728790
+```
+
+Not much better

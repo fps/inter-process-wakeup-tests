@@ -1,12 +1,11 @@
-#include <semaphore.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include <time.h>
 #include <fcntl.h>
 #include <unistd.h>
 #include <string.h>
 #include <errno.h>
+#include <semaphore.h>
 
 int main(int argc, char *argv[])
 {
@@ -16,20 +15,19 @@ int main(int argc, char *argv[])
     printf("Failed to open semaphore: %s\n", strerror(errno));
     return EXIT_FAILURE;
   }
-      
+
   struct timespec ts;
   while (1)
   {
-    clock_gettime(CLOCK_MONOTONIC, &ts);
-
-    int ret = sem_post(s);
+    int ret = sem_wait(s);
     if (0 != ret)
     {
-      printf("Failed to write to: %s: %s\n", argv[1], strerror(errno));
+      printf("Failed to wait on semaphore: %s\n", strerror(errno));
       return EXIT_FAILURE;
     }
+
+    clock_gettime(CLOCK_MONOTONIC, &ts);
     printf("secs: %ld, nsecs: %ld\n", ts.tv_sec, ts.tv_nsec);
-    usleep(1000000);
   }
   return EXIT_SUCCESS;
 }
