@@ -70,3 +70,30 @@ Done.
 
 As we can see it takes around 50 - 60 microseconds for the `i_pipe` to wakeup after `o_pipe` wrote a byte to the named pipe.
 
+## Condition variable in shared memory
+
+```
+chrt -f 95 ./o_cond_shm
+secs: 250128, nsecs: 112508338
+secs: 250129, nsecs: 112701940
+secs: 250130, nsecs: 112759480
+secs: 250131, nsecs: 112969999
+secs: 250132, nsecs: 113162833
+secs: 250133, nsecs: 113204232
+secs: 250134, nsecs: 113395527
+^C
+```
+
+```
+chrt -f 95 ./i_cond_shm
+secs: 250128, nsecs: 112559155
+secs: 250129, nsecs: 112752692
+secs: 250130, nsecs: 112831952
+secs: 250131, nsecs: 113018830
+secs: 250132, nsecs: 113209081
+secs: 250133, nsecs: 113247114
+secs: 250134, nsecs: 113445567
+```
+
+Again around 50 us delay between the signal and the wakeup
+
