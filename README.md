@@ -179,3 +179,4 @@ secs: 284886, nsecs: 625303560
 secs: 284887, nsecs: 625441486
 ```
 
+0.8 us - that's more like it :)
