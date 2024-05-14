@@ -129,3 +129,27 @@ secs: 282648, nsecs: 778728790
 ```
 
 Not much better
+
+## Unnamed semaphore
+
+```
+chrt -f 95 ./o_unnamed_sem
+secs: 283400, nsecs: 964203046
+secs: 283401, nsecs: 964399039
+secs: 283402, nsecs: 964592270
+secs: 283403, nsecs: 964785499
+secs: 283404, nsecs: 964977858
+secs: 283405, nsecs: 965115501
+secs: 283406, nsecs: 965315677
+```
+
+```
+chrt -f 95 ./i_unnamed_sem
+secs: 283400, nsecs: 964254114
+secs: 283401, nsecs: 964447141
+secs: 283402, nsecs: 964639888
+secs: 283403, nsecs: 964834067
+secs: 283404, nsecs: 965028431
+secs: 283405, nsecs: 965167046
+secs: 283406, nsecs: 965363366
+```
