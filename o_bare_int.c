@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
     return EXIT_FAILURE;
   }
 
-  int ret = ftruncate(s, sizeof(sem_t));
+  int ret = ftruncate(s, sizeof(int));
   if (0 != ret)
   printf("ftruncate failed: %s\n", strerror(errno));
 
@@ -36,12 +36,8 @@ int main(int argc, char *argv[])
   {
     clock_gettime(CLOCK_MONOTONIC, &ts);
 
-    int ret = sem_post((sem_t*)m);
-    if (0 != ret)
-    {
-      printf("Failed to write to: %s\n", strerror(errno));
-      return EXIT_FAILURE;
-    }
+    *((int*)m) += 1;
+
     printf("secs: %ld, nsecs: %ld\n", ts.tv_sec, ts.tv_nsec);
     usleep(1000000);
   }
