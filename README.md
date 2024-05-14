@@ -42,6 +42,11 @@ Here are some example results..
 
 # AsRock N100DC-itx (Intel N100 CPU)
 
+```
+uname -a
+Linux ogfx100 6.6.30-rt30 #1-NixOS SMP PREEMPT_RT Thu May  2 14:32:50 UTC 2024 x86_64 GNU/Linux
+```
+
 ## Named pipes
 
 ```
