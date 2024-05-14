@@ -32,6 +32,8 @@ int main(int argc, char *argv[])
     return EXIT_FAILURE;
   }
 
+
+  // These get initialized by i_cond_shm.c
   #if 0
   pthread_condattr_t cond_attr;
   pthread_condattr_init(&cond_attr);
