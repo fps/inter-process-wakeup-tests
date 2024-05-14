@@ -153,3 +153,29 @@ secs: 283404, nsecs: 965028431
 secs: 283405, nsecs: 965167046
 secs: 283406, nsecs: 965363366
 ```
+
+## Spinning on a bare int in shared memory
+
+```
+./o_bare_int
+secs: 284881, nsecs: 624681713
+secs: 284882, nsecs: 624790675
+secs: 284883, nsecs: 624922829
+secs: 284884, nsecs: 625064580
+secs: 284885, nsecs: 625205841
+secs: 284886, nsecs: 625302734
+secs: 284887, nsecs: 625440672
+^C
+```
+
+```
+[nix-shell:~/src/flow]$ ./i_bare_int
+secs: 284881, nsecs: 624688671
+secs: 284882, nsecs: 624791383
+secs: 284883, nsecs: 624925238
+secs: 284884, nsecs: 625065518
+secs: 284885, nsecs: 625206521
+secs: 284886, nsecs: 625303560
+secs: 284887, nsecs: 625441486
+```
+
