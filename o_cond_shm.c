@@ -50,14 +50,6 @@ int main(int argc, char *argv[])
   
   while(1)
   {
-    #if 0
-    int ret = pthread_mutex_lock(&(((struct shm_sync*)m)->mutex));
-    if (0 != ret)
-    {
-      printf("Failed to lock mutex: %s\n", strerror(errno));
-      return EXIT_FAILURE;
-    }
-    #endif 
     clock_gettime(CLOCK_MONOTONIC, &ts);
     ret = pthread_cond_signal(&(((struct shm_sync*)m)->condition));
     if (0 != ret)
