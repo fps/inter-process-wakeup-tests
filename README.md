@@ -32,7 +32,7 @@ and
 chrt -f 95 ./o_pipe pipe
 ```
 
-## Condition variable in SHM
+## Condition variable in shared memory
 
 You have to run the `i_cond_shm` before `o_cond_shm` because the former initializes the mutex and condition variable in the shared memory.
 
