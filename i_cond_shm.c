@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
   if (0 != ret)
   printf("ftruncate failed: %s\n", strerror(errno));
 
-  void *m = mmap(0,  sizeof(struct shm_sync) , PROT_READ|PROT_WRITE, MAP_SHARED, s, 0);
+  void *m = mmap(0,  sizeof(struct shm_sync) , PROT_READ | PROT_WRITE, MAP_SHARED, s, 0);
   if (MAP_FAILED == m)
   {
     printf("mmap failed\n");
@@ -52,14 +52,15 @@ int main(int argc, char *argv[])
       printf("Failed to lock mutex: %s\n", strerror(errno));
       return EXIT_FAILURE;
     }
+
     ret = pthread_cond_wait(&(((struct shm_sync*)m)->condition), &(((struct shm_sync*)m)->mutex));
     if (0 != ret)
     {
       printf("Failed to wait on condition: %s\n", strerror(errno));
       return EXIT_FAILURE;
     }
-    clock_gettime(CLOCK_MONOTONIC, &ts);
 
+    clock_gettime(CLOCK_MONOTONIC, &ts);
     printf("secs: %ld, nsecs: %ld\n", ts.tv_sec, ts.tv_nsec);
 
     ret = pthread_mutex_unlock(&(((struct shm_sync*)m)->mutex));
