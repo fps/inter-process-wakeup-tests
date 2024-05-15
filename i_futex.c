@@ -18,6 +18,7 @@ int futex(int* uaddr, int futex_op, int val, const struct timespec* timeout,
 }
 
 void wait_on_futex_value(int* futex_addr, int val) {
+  struct timespec ts = { .tv_sec = 0, .tv_nsec = 1000000 };
   while (1) {
     int futex_rc = futex(futex_addr, FUTEX_WAIT, val, NULL, NULL, 0);
     if (futex_rc == -1) {
@@ -25,8 +26,9 @@ void wait_on_futex_value(int* futex_addr, int val) {
         perror("futex");
         exit(1);
       }
+      // printf(".");
     } else if (futex_rc == 0) {
-      if (*futex_addr == val) {
+      if (*futex_addr != val) {
         // This is a real wakeup.
         return;
       }
@@ -52,16 +54,18 @@ int main(int argc, char *argv[])
   if (0 != ret)
   printf("ftruncate failed: %s\n", strerror(errno));
 
-  void *m = mmap(0,  sizeof(int) , PROT_READ | PROT_WRITE, MAP_SHARED, s, 0);
+  void * volatile m = mmap(0,  sizeof(int) , PROT_READ | PROT_WRITE, MAP_SHARED, s, 0);
   if (MAP_FAILED == m)
   {
     printf("mmap failed\n");
     return EXIT_FAILURE;
   }
 
+  *(int*)m = 0;
+
   struct timespec ts;
-  int value = 1;
-  while (1)
+  int value = 0;
+  for (int index = 0; index < 10; ++index)
   {
     wait_on_futex_value((int*)m, value);
 

@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
   }
 
   struct timespec ts;
-  while (1)
+  for (int index = 0; index < 10; ++index)
   {
     int ret = sem_wait(s);
     if (0 != ret)

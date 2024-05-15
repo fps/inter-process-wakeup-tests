@@ -185,28 +185,29 @@ secs: 284887, nsecs: 625441486
 
 ```
 [nix-shell:~/src/flow]$ chrt -f 95 ./o_futex
-secs: 84478, nsecs: 257347773
-secs: 84479, nsecs: 257450959
-secs: 84480, nsecs: 257483084
-secs: 84481, nsecs: 257542892
-secs: 84482, nsecs: 257571720
-secs: 84483, nsecs: 257595752
-secs: 84484, nsecs: 257620863
-secs: 84485, nsecs: 257644488
-secs: 84486, nsecs: 257678295
-^C
+secs: 86861, nsecs: 266360006
+secs: 86862, nsecs: 266512301
+secs: 86863, nsecs: 266654002
+secs: 86864, nsecs: 266711088
+secs: 86865, nsecs: 266772264
+secs: 86866, nsecs: 266831365
+secs: 86867, nsecs: 266888132
+secs: 86868, nsecs: 266948363
+secs: 86869, nsecs: 267011664
+secs: 86870, nsecs: 267068953
 ```
 
 ```
 [fps@ogfx100:~/src/flow]$ chrt -f 95 ./i_futex
-secs: 84478, nsecs: 257390305
-secs: 84479, nsecs: 257483606
-secs: 84480, nsecs: 257513550
-secs: 84481, nsecs: 257550645
-secs: 84482, nsecs: 257614182
-secs: 84483, nsecs: 257602979
-secs: 84484, nsecs: 257653332
-secs: 84485, nsecs: 257677168
-secs: 84486, nsecs: 257685790
-^C
+secs: 86861, nsecs: 266379563
+secs: 86862, nsecs: 266522245
+secs: 86863, nsecs: 266665205
+secs: 86864, nsecs: 266722381
+secs: 86865, nsecs: 266782290
+secs: 86866, nsecs: 266842177
+secs: 86867, nsecs: 266900334
+secs: 86868, nsecs: 266959459
+secs: 86869, nsecs: 267021942
+secs: 86870, nsecs: 267079471
 ```
+

@@ -47,20 +47,18 @@ int main(int argc, char *argv[])
   if (0 != ret)
   printf("ftruncate failed: %s\n", strerror(errno));
 
-  void *m = mmap(0,  sizeof(int) , PROT_READ | PROT_WRITE, MAP_SHARED, s, 0);
+  void * volatile m = mmap(0,  sizeof(int) , PROT_READ | PROT_WRITE, MAP_SHARED, s, 0);
   if (MAP_FAILED == m)
   {
     printf("mmap failed\n");
     return EXIT_FAILURE;
   }
 
-  int value = 0;
   struct timespec ts;
-  while (1)
+  for (int index = 0; index < 10; ++index)
   {
     clock_gettime(CLOCK_MONOTONIC, &ts);
-    ++value;
-    *((int*)m) = value;
+    ++(*((int*)m));
     wake_futex_blocking((int*)m);
     printf("secs: %ld, nsecs: %ld\n", ts.tv_sec, ts.tv_nsec);
     usleep(1000000);

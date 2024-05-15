@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
   volatile int old_value = 0;
 
   struct timespec ts;
-  while (1)
+  for (int index = 0; index < 10; ++index)
   {
     while (*((int*)m) <= old_value)
     {

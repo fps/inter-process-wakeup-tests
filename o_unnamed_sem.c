@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
   }
 
   struct timespec ts;
-  while (1)
+  for (int index = 0; index < 10; ++index)
   {
     clock_gettime(CLOCK_MONOTONIC, &ts);
 
