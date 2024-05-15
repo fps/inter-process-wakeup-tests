@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
   if (0 != ret)
   printf("ftruncate failed: %s\n", strerror(errno));
 
-  void *m = mmap(0,  sizeof(int) , PROT_READ | PROT_WRITE, MAP_SHARED, s, 0);
+  void *m = mmap(0,  sizeof(sem_t) , PROT_READ | PROT_WRITE, MAP_SHARED, s, 0);
   if (MAP_FAILED == m)
   {
     printf("mmap failed\n");

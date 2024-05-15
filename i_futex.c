@@ -10,6 +10,8 @@
 #include <linux/futex.h>
 #include <sys/syscall.h>
 
+// Adapted from https://eli.thegreenplace.net/2018/basics-of-futexes/
+
 int futex(int* uaddr, int futex_op, int val, const struct timespec* timeout,
           int* uaddr2, int val3) {
   return syscall(SYS_futex, uaddr, futex_op, val, timeout, uaddr2, val3);
@@ -46,7 +48,7 @@ int main(int argc, char *argv[])
     return EXIT_FAILURE;
   }
 
-  int ret = ftruncate(s, sizeof(sem_t));
+  int ret = ftruncate(s, sizeof(int));
   if (0 != ret)
   printf("ftruncate failed: %s\n", strerror(errno));
 
