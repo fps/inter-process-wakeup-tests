@@ -11,6 +11,7 @@
 
 #include <linux/futex.h>
 #include <sys/syscall.h>
+#include <sched.h>
 
 // Adapted from https://eli.thegreenplace.net/2018/basics-of-futexes/
 
@@ -21,6 +22,7 @@ int futex(int* uaddr, int futex_op, int val, const struct timespec* timeout,
 
 void wake_futex_blocking(int* futex_addr) {
   while (1) {
+    //sched_yield();
     int futex_rc = futex(futex_addr, FUTEX_WAKE, 1, NULL, NULL, 0);
     if (futex_rc == -1) {
       perror("futex wake");
