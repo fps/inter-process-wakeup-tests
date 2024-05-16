@@ -15,22 +15,23 @@
 
 // Adapted from https://eli.thegreenplace.net/2018/basics-of-futexes/
 
-int futex(int* uaddr, int futex_op, int val, const struct timespec* timeout,
+inline int futex(int* uaddr, int futex_op, int val, const struct timespec* timeout,
           int* uaddr2, int val3) {
   return syscall(SYS_futex, uaddr, futex_op, val, timeout, uaddr2, val3);
 }
 
-void wake_futex_blocking(int* futex_addr) {
-  while (1) {
+inline void wake_futex_blocking(int* futex_addr) {
+  // while (1) {
     //sched_yield();
     int futex_rc = futex(futex_addr, FUTEX_WAKE, 1, NULL, NULL, 0);
+    //sched_yield();
     if (futex_rc == -1) {
       perror("futex wake");
       exit(1);
     } else if (futex_rc > 0) {
       return;
     }
-  }
+  //}
 }
 
 
@@ -63,7 +64,7 @@ int main(int argc, char *argv[])
     ++(*((int*)m));
     wake_futex_blocking((int*)m);
     printf("secs: %ld, nsecs: %ld\n", ts.tv_sec, ts.tv_nsec);
-    usleep(1000000);
+    usleep(1000);
   }
   return EXIT_SUCCESS;
 }

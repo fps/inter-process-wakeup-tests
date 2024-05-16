@@ -13,14 +13,14 @@
 
 // Adapted from https://eli.thegreenplace.net/2018/basics-of-futexes/
 
-int futex(int* uaddr, int futex_op, int val, const struct timespec* timeout,
+inline int futex(int* uaddr, int futex_op, int val, const struct timespec* timeout,
           int* uaddr2, int val3) {
   return syscall(SYS_futex, uaddr, futex_op, val, timeout, uaddr2, val3);
 }
 
-void wait_on_futex_value(int* futex_addr, int val) {
+inline void wait_on_futex_value(int* futex_addr, int val) {
   //struct timespec ts = { .tv_sec = 0, .tv_nsec = 1000000 };
-  while (1) {
+  // while (1) {
     // sched_yield();
     int futex_rc = futex(futex_addr, FUTEX_WAIT, val, NULL, NULL, 0);
     if (futex_rc == -1) {
@@ -37,7 +37,7 @@ void wait_on_futex_value(int* futex_addr, int val) {
     } else {
       abort();
     }
-  }
+  //}
 }
 
 

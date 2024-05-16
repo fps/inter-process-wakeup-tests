@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
     *((int*)m) += 1;
 
     printf("secs: %ld, nsecs: %ld\n", ts.tv_sec, ts.tv_nsec);
-    usleep(1000000);
+    usleep(1000);
   }
   return EXIT_SUCCESS;
 }
