@@ -1,7 +1,11 @@
 # Notes
 
+## General remarks
 
-## chrt
+For some `i_`/`o-`/ pairs it is necessary for the `o_` program to be run first. For the others it doesn't matter, so if you run the `o_` program first in all cases it is always correct :)
+
+## Realtime scheduling
+
 Do not forget to use e.g. `chrt` to enable `SCHED_FIFO`. E.g.:
 
 ```
