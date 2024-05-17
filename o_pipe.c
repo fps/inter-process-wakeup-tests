@@ -6,9 +6,13 @@
 #include <unistd.h>
 #include <string.h>
 #include <errno.h>
+#include <sys/mman.h>
+
+#include "common.h"
 
 int main(int argc, char *argv[])
 {
+  mlockall(MCL_CURRENT | MCL_FUTURE);
   if (argc < 2)
   {
     printf("Usage: io output-file-name\n");
@@ -35,7 +39,7 @@ int main(int argc, char *argv[])
       return EXIT_FAILURE;
     }
     printf("secs: %ld, nsecs: %ld\n", ts.tv_sec, ts.tv_nsec);
-    usleep(1000);
+    usleep(SLEEPTIME_USECS);
   }
   return EXIT_SUCCESS;
 }

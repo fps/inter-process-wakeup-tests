@@ -6,9 +6,11 @@
 #include <string.h>
 #include <errno.h>
 #include <semaphore.h>
+#include <sys/mman.h>
 
 int main(int argc, char *argv[])
 {
+  mlockall(MCL_CURRENT | MCL_FUTURE);
   sem_t *s = sem_open("/s", O_CREAT, S_IRUSR | S_IWUSR, 0);
   if (SEM_FAILED == s)
   {

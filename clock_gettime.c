@@ -1,8 +1,12 @@
 #include <time.h>
 #include <stdio.h>
+#include <sys/mman.h>
+
 
 int main(int argc, char *argv[])
 {
+  mlockall(MCL_CURRENT | MCL_FUTURE);
+
   struct timespec ts1;
   clock_gettime(CLOCK_MONOTONIC, &ts1);
 

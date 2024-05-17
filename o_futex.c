@@ -13,6 +13,9 @@
 #include <sys/syscall.h>
 #include <sched.h>
 
+#include "common.h"
+#include "common.h"
+
 // Adapted from https://eli.thegreenplace.net/2018/basics-of-futexes/
 
 inline int futex(int* uaddr, int futex_op, int val, const struct timespec* timeout,
@@ -37,7 +40,7 @@ inline void wake_futex_blocking(int* futex_addr) {
 
 int main(int argc, char *argv[])
 {
-  mlockall(MCL_FUTURE);
+  mlockall(MCL_CURRENT | MCL_FUTURE);
 
   int s = shm_open("/s", O_CREAT | O_RDWR, S_IRUSR | S_IWUSR);
   if (-1 == s)
@@ -64,7 +67,7 @@ int main(int argc, char *argv[])
     ++(*((int*)m));
     wake_futex_blocking((int*)m);
     printf("secs: %ld, nsecs: %ld\n", ts.tv_sec, ts.tv_nsec);
-    usleep(1000);
+    usleep(SLEEPTIME_USECS);
   }
   return EXIT_SUCCESS;
 }

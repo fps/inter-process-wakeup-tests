@@ -5,9 +5,11 @@
 #include <unistd.h>
 #include <string.h>
 #include <errno.h>
+#include <sys/mman.h>
 
 int main(int argc, char *argv[])
 {
+  mlockall(MCL_CURRENT | MCL_FUTURE);
   if (argc < 2)
   {
     printf("Usage: io input-file-name\n");

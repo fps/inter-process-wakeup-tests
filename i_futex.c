@@ -43,7 +43,7 @@ inline void wait_on_futex_value(int* futex_addr, int val) {
 
 int main(int argc, char *argv[])
 {
-  mlockall(MCL_FUTURE);
+  mlockall(MCL_CURRENT | MCL_FUTURE);
 
   int s = shm_open("/s", O_CREAT | O_RDWR, S_IRUSR | S_IWUSR);
   if (-1 == s)

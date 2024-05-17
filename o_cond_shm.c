@@ -11,9 +11,12 @@
 #include <time.h>
 
 #include "shm_sync.h"
+#include "common.h"
 
 int main(int argc, char *argv[])
 {
+  mlockall(MCL_CURRENT | MCL_FUTURE);
+
   int s = shm_open("/s", O_CREAT | O_RDWR, S_IRUSR | S_IWUSR);
   if (-1 == s) 
   {
@@ -59,6 +62,6 @@ int main(int argc, char *argv[])
     }
 
     printf("secs: %ld, nsecs: %ld\n", ts.tv_sec, ts.tv_nsec);
-    usleep(1000);
+    usleep(SLEEPTIME_USECS);
   }
 }
